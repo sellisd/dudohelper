@@ -7,6 +7,7 @@
 #    http://shiny.rstudio.com/
 #
 library(tidyverse)
+library(scales)
 library(shiny)
 
 # Define UI for application that draws a histogram
@@ -92,8 +93,9 @@ server <- function(input, output) {
         color = name
       )) +
         geom_line(aes(linetype = name)) +
-        geom_point() + xlab("Number of dice with side") + xlim(0, 10) +
-        ylab("Probability of at least X")
+        geom_point() + xlab("Number of dice with side") + 
+        ylab("Probability of at least X") + 
+        scale_x_continuous(breaks=breaks_pretty(),limits=c(0,10))
       # improvements for graph :
       # - sort legends
       # - use emoji for dice sides
