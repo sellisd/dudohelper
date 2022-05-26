@@ -35,6 +35,7 @@ ui <- fluidPage(
         # Show a plot of the generated distribution
         mainPanel(
            plotOutput("mystats"),
+           textOutput("information")
         )
     )
 )
@@ -60,12 +61,17 @@ server <- function(input, output) {
   #' probs <- conditional(number_of_dice, c(1:number_of_dice), 2, roll)
   conditional <- function(number_of_dice, k, side, roll){
     # the expected probabilities given my dice
+
     if(side == 1){
       k <- k - roll[side]
       p <- 1/6
     }else{
       k <- k - roll[side] - roll['1']
       p <- 2/6
+    }
+    if(sum(roll) == 1){
+      palifico = TRUE
+      p<-1/6
     }
     1-pbinom(k-1, number_of_dice - sum(roll), p)
   }
@@ -100,6 +106,12 @@ server <- function(input, output) {
       # - sort legends
       # - use emoji for dice sides
     })
+    output$information<- renderText({
+        if(sum(input$one, input$two, input$three, input$four, input$five, input$six)==1){
+        "Palifico"
+        }
+      })
+    
 }
 
 # Run the application 
