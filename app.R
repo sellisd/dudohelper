@@ -16,7 +16,7 @@ ui <- fluidPage(
 
     # Application title
     titlePanel("Dudo stats helper"),
-    ribbon_css("https://github.com/sellisd/dudohelper/issues", position = "right", text = "Report a bug"),
+    ribbon_css("https://github.com/sellisd/dudohelper/issues", position = "right", text = "Report a bug"),
     # Sidebar with a slider input for number of bins 
     sidebarLayout(
         sidebarPanel(
@@ -36,8 +36,8 @@ ui <- fluidPage(
         # Show a plot of the generated distribution
         mainPanel(
            plotOutput("mystats"),
-           textOutput("information")
-           a("https://sellisd.github.io/dudohelper/", href="https://sellisd.github.io/dudohelper/")
+           textOutput("information"),
+           a("https://github.com/sellisd/dudohelper", href="https://github.com/sellisd/dudohelper")
         )
     )
 )
